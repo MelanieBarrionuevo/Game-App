@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="roadGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB" />
+      <stop offset="50%" stop-color="#a1d8ff" />
+      <stop offset="100%" stop-color="#cfefff" />
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect x="0" y="0" width="400" height="90" fill="url(#roadGrad)" />
+  <!-- Grass sides -->
+  <rect x="0" y="90" width="400" height="70" fill="#c9f6c9" />
+  <!-- Road -->
+  <rect x="20" y="100" width="360" height="40" rx="6" fill="#3a3a3a" />
+  <!-- Road edges -->
+  <rect x="20" y="98" width="360" height="6" fill="#2e2e2e" opacity="0.6" />
+  <rect x="20" y="136" width="360" height="6" fill="#2e2e2e" opacity="0.6" />
+  <!-- Center dashed line -->
+  <g stroke="#ffd64d" stroke-width="6" stroke-linecap="round" stroke-dasharray="20 18">
+    <line x1="40" y1="120" x2="360" y2="120" />
+  </g>
+</svg>
