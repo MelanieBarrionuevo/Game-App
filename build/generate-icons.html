@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generar Iconos PWA</title>
+</head>
+<body>
+    <h1>Generando iconos...</h1>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <p id="status">Preparando...</p>
+    
+    <script>
+        // Generar iconos desde SVG
+        const svgSrc = '/icon.svg';
+        const sizes = [192, 512];
+        
+        async function generateIcons() {
+            const response = await fetch(svgSrc);
+            const svgText = await response.text();
+            
+            for (let size of sizes) {
+                // Crear canvas
+                const canvas = document.getElementById('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                // Crear imagen SVG
+                const svg = new Blob([svgText], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(svg);
+                const img = new Image();
+                
+                img.onload = function() {
+                    ctx.drawImage(img, 0, 0, size, size);
+                    const pngData = canvas.toDataURL('image/png');
+                    
+                    // Simular descarga
+                    const link = document.createElement('a');
+                    link.href = pngData;
+                    link.download = `icon-${size}.png`;
+                    console.log(`Icon ${size}x${size} ready`);
+                    
+                    // En producción, estos se servirían desde el servidor
+                    // Por ahora, mostrar que están listos
+                    document.getElementById('status').innerHTML += `<br>✓ Icon ${size}x${size} generado`;
+                };
+                
+                img.src = url;
+            }
+        }
+        
+        generateIcons();
+    </script>
+</body>
+</html>
